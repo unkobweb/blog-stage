@@ -1,4 +1,9 @@
 const express = require("express");
 const app = express();
+const router = require("./routes/web");
+
+app.use(express.static(__dirname + '/build'));
+app.use(router);
+
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {console.log(`Express server running on port ${PORT}`)});
