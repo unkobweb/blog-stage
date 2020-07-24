@@ -1,2 +1,3 @@
-# blog-stage
- Blog qui permet de raconter mon expérience en entreprise
+# 📚 Blog stage
+
+Ce projet a pour but de raconter mes expériences en entreprise au travers d'un site web
