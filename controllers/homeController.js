@@ -13,10 +13,5 @@ function index(req, res){
     res.sendFile(path.join(__dirname, "../views","index.html"));
 }
 
-function allExperiences(req, res){
-    connection.query("SELECT * FROM experiences", function(err, results, fields) {
-        res.send(results);
-    })
 }
 
-module.exports = {index, allExperiences}
