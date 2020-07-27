@@ -21,3 +21,8 @@ function connectionPage(req, res){
     res.sendFile(path.join(__dirname, '../views', "connexion.html"));
 }
 
+function connect(req, res){
+    console.log(req.body);
+}
+
+module.exports = {index, experiencePage, connectionPage, connect}
