@@ -9,20 +9,18 @@ function Separator(){
 }
 
 function Experience({experience}){
-    let {id, main_color, period, company, job} = experience
+    let {id, slug, main_color, period, company, job} = experience
 
     function handleClick(e){
         window.location.href = "/experience/"+id
     }
 
     return(
-        <div className="experience" data-id={id} >
-            <div className="container" style={{backgroundColor: main_color}} onClick={handleClick}>
-                <h3 className="period">{period}</h3>
-                <div className="image" style={{backgroundImage: "url('/img/"+id+".png')"}}></div>
-                <h3 className="name">{company}</h3>
-                <h4 className="job">{job}</h4>
-            </div>
+        <div className="experience" data-id={id} style={{backgroundImage: "url('/img/"+slug+".png')"}} onClick={handleClick}>
+            <h3 className="period">{period}</h3>
+            <h3 className="name">{company}</h3>
+            <h4 className="job">{job}</h4>
+            <div className="color-overlay"></div>
         </div>
     )
 }
@@ -35,7 +33,7 @@ class Experiences extends React.Component{
     }
 
     componentDidMount(){
-        fetch("http://localhost:8000/allExperiences").then(data => data.json()).then(result => {
+        fetch("http://localhost:8000/api/allExperiences").then(data => data.json()).then(result => {
             this.setState({experiences : result});
         });
     }
@@ -46,7 +44,12 @@ class Experiences extends React.Component{
             this.state.experiences.forEach(experience => {
                 rows.push(<Experience key={experience.id} experience={experience}/>);
             });
-            return <div id="experiences">{rows}<Separator/></div>
+            return (
+                <div>
+                    <div id="experiences">{rows}</div>
+                    <Separator/>
+                </div>
+            )
         }
         return <div></div>
     }
