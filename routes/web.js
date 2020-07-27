@@ -8,6 +8,7 @@ const apiController = require("../controllers/apiController");
 router.get("/", homeController.index);
 router.get("/allExperiences", homeController.allExperiences)
 router.get("/experience/:id", homeController.experiencePage);
+router.get("/connexion", homeController.connectionPage);
 //API
 router.get("/api/allExperiences", apiController.allExperiences);
 router.get("/api/experience/:id", apiController.experience);

@@ -17,3 +17,7 @@ function experiencePage(req, res){
     res.sendFile(path.join(__dirname, "../views","experience.html"));
 }
 
+function connectionPage(req, res){
+    res.sendFile(path.join(__dirname, '../views', "connexion.html"));
+}
+
