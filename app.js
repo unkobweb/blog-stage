@@ -3,6 +3,8 @@ const app = express();
 const router = require("./routes/web");
 
 app.use(express.static(__dirname + '/build'));
+app.use(express.static(__dirname + '/public'));
+
 app.use(router);
 
 const PORT = process.env.PORT || 8000;
