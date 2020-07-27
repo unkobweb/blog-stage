@@ -8,3 +8,9 @@ const connection = mysql.createConnection({
     database: process.env.DB_DATABASE
 });
 
+function allExperiences(req, res){
+    connection.query("SELECT * FROM experiences", function(err, results, fields) {
+        res.send(results);
+    })
+}
+module.exports = {allExperiences, experience}
