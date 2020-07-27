@@ -13,4 +13,15 @@ function allExperiences(req, res){
         res.send(results);
     })
 }
+
+function experience(req, res){
+    connection.query("SELECT * FROM experiences WHERE id = ?",[req.params.id], function(err, results, fields) {
+        let result = results[0];
+        connection.query("SELECT * FROM chapters WHERE company_id = ?",[req.params.id], function(err, results, fields){
+            result.chapters = results;
+            res.send(result);
+        });
+    });
+}
+
 module.exports = {allExperiences, experience}

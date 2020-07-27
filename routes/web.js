@@ -9,5 +9,6 @@ router.get("/", homeController.index);
 router.get("/allExperiences", homeController.allExperiences)
 //API
 router.get("/api/allExperiences", apiController.allExperiences);
+router.get("/api/experience/:id", apiController.experience);
 
 module.exports = router;
