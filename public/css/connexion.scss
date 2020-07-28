@@ -1,0 +1,19 @@
+@import 'variables';
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    h1{
+        font-family: $title-font;
+        text-align: center;
+    }
+    form{
+        width: 60vw;
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+    }
+}
