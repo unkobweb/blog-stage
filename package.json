@@ -4,7 +4,7 @@
   "description": "Blog qui permet de raconter mon expérience en entreprise",
   "main": "app.js",
   "scripts": {
-    "start":"node app.js",
+    "start": "node app.js",
     "start-dev": "concurrently -kill-others \"npm run start-nodemon\" \"npm run watch\"",
     "start-nodemon": "nodemon app.js",
     "watch": "parcel watch public/js/* --out-dir build/js --public-url /js --hmr-hostname localhost",
