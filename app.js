@@ -1,9 +1,16 @@
 const express = require("express");
 const app = express();
+const session = require("express-session");
 const router = require("./routes/web");
 
 app.use(express.static(__dirname + '/build'));
 app.use(express.static(__dirname + '/public'));
+app.use(session({
+    secret: 'blog_ynov_alex_2020',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+  }))
 
 app.use(router);
 
