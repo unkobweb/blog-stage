@@ -41,4 +41,9 @@ function adminPage(req, res){
     }
 }
 
+function addChapterPage(req, res){
+    req.session.selectedExperience = req.params.id
+    res.sendFile(path.join(__dirname, "../views", "addChapter.html"));
+}
+
 module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter}
