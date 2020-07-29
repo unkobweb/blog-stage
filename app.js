@@ -9,7 +9,7 @@ app.use(session({
     secret: 'blog_ynov_alex_2020',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
+    cookie: { secure: false }
   }));
 app.use(express.json());
 
