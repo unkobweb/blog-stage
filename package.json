@@ -4,7 +4,7 @@
   "description": "Blog qui permet de raconter mon expérience en entreprise",
   "main": "app.js",
   "scripts": {
-    "start":"node app.js",
+    "start": "node app.js",
     "start-dev": "concurrently -kill-others \"npm run start-nodemon\" \"npm run watch\"",
     "start-nodemon": "nodemon app.js",
     "watch": "parcel watch public/js/* --out-dir build/js --public-url /js --hmr-hostname localhost",
@@ -25,6 +25,7 @@
     "concurrently": "^5.2.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "mysql2": "^2.1.0",
     "node-gyp": "^7.0.0",
     "nodemon": "^2.0.4",
