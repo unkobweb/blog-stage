@@ -16,7 +16,18 @@ class Connexion extends React.Component{
         this.setState({
             [name]: e.target.value
         });
-        
+    }
+
+    handleClick(e) {
+        e.preventDefault();
+        console.log(this.state);
+        fetch("/connect", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(this.state),
+        });
     }
 
     render(){
@@ -39,4 +50,4 @@ class Connexion extends React.Component{
     }
 }
 
-ReactDOM.render(<Connexion/>,document.querySelector("#app"))
+ReactDOM.render(<Connexion />, document.querySelector("#app"));

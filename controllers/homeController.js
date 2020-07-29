@@ -1,20 +1,20 @@
 const path = require("path");
 const mysql = require("mysql2");
-require('dotenv').config();
+require("dotenv").config();
 
 const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_DATABASE
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_DATABASE,
 });
 
-function index(req, res){
-    res.sendFile(path.join(__dirname, "../views","index.html"));
+function index(req, res) {
+  res.sendFile(path.join(__dirname, "../views", "index.html"));
 }
 
-function experiencePage(req, res){
-    res.sendFile(path.join(__dirname, "../views","experience.html"));
+function experiencePage(req, res) {
+  res.sendFile(path.join(__dirname, "../views", "experience.html"));
 }
 
 module.exports = {index, experiencePage}

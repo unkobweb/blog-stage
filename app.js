@@ -10,9 +10,12 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true }
-  }))
+  }));
+app.use(express.json());
 
 app.use(router);
 
 const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {console.log(`Express server running on port ${PORT}`)});
+app.listen(PORT, () => {
+  console.log(`Express server running on port ${PORT}`);
+});
