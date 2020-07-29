@@ -46,4 +46,8 @@ function addChapterPage(req, res){
     res.sendFile(path.join(__dirname, "../views", "addChapter.html"));
 }
 
+function createChapter(req, res){
+
+}
+
 module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter}
