@@ -33,4 +33,12 @@ function connect(req, res){
     console.log(req.body);
 }
 
-module.exports = {connectionPage, connect}
+function adminPage(req, res){
+    if (req.session.user != undefined && req.session.user.role == 2){
+        res.sendFile(path.join(__dirname, "../views", "admin.html"));
+    } else {
+        res.redirect("/connexion");
+    }
+}
+
+module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter}
