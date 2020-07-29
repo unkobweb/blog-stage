@@ -24,4 +24,32 @@ function experience(req, res){
     });
 }
 
-module.exports = {allExperiences, experience}
+function getAllChaptersAndExperiences(req, res){
+    connection.query("SELECT e.id as company_id, e.company, c.id as chapter_id, c.title FROM experiences e LEFT JOIN chapters c ON c.company_id = e.id", function(err, results, fields){
+        console.log(results);
+        let response = []
+        let lastExp = null;
+        results.forEach(result => {
+            if (lastExp != result.company){
+                lastExp = result.company
+                console.log(result)
+                response.push({
+                    id: result.company_id,
+                    company: result.company,
+                    chapters: result.chapter_id != null ? [{
+                        id: result.chapter_id,
+                        title: result.title
+                    }] : []
+                })
+            } else {
+                response[response.length-1].chapters.push({
+                    id: result.chapter_id,
+                    title: result.title
+                })
+            }
+        })
+        res.send(response)
+    })
+}
+
+module.exports = {allExperiences, experience, getAllChaptersAndExperiences}
