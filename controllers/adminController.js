@@ -1,5 +1,6 @@
 const path = require("path");
 const mysql = require("mysql2");
+const bcrypt = require("bcrypt")
 require('dotenv').config();
 
 const connection = mysql.createConnection({
@@ -14,6 +15,21 @@ function connectionPage(req, res){
 }
 
 function connect(req, res){
+    connection.query("SELECT * FROM users WHERE username = ?",[req.body.username], (err, results, fields) => {
+        if (results[0] !== undefined){
+            bcrypt.compare(req.body.password, results[0].password, function(err, result) {
+                if (result){
+                    req.session.user = results[0];
+                    res.send({type:"success", content: "Connecté !"});
+                } else {
+                    res.send({type: "danger", content: "Mauvais mot de passe"});
+                }
+            });
+        } else {
+            res.send({type: "danger", content: "Utilisateur non trouvé"});
+        }
+        
+    })
     console.log(req.body);
 }
 
