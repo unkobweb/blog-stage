@@ -78,18 +78,36 @@ h1{
                         }
                     }
                 }
-                &:last-child{
-                    background-color: $grey;
-                    text-transform: uppercase;
-                    text-decoration: none;
-                    p{
-                        text-align: center;
-                        width: 100%;
-                        margin: 5px;
+                &:first-child{
+                    .fa-chevron-up{
+                        display: none;
                     }
-                    &:hover{
-                        cursor: pointer;
+                }
+                &:last-of-type{
+                    .fa-chevron-down{
+                        display: none;
                     }
+                }
+            }
+            .addchapter{
+                display: flex;
+                flex-direction: row;
+                color: white;
+                padding: 5px;
+                margin-bottom: 5px;
+                border-radius: 10px;
+                justify-content: space-between;
+                align-items: center;
+                background-color: $grey;
+                text-transform: uppercase;
+                text-decoration: none;
+                p{
+                    text-align: center;
+                    width: 100%;
+                    margin: 5px;
+                }
+                &:hover{
+                    cursor: pointer;
                 }
             }
         }
