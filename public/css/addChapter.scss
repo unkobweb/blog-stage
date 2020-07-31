@@ -5,7 +5,7 @@ body{
 }
 #header{
     font-family: $content-font;
-    height: 20vh;
+    height: 15vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,6 +13,7 @@ body{
         margin: 5px;
         text-align: center;
         font-family: $title-font;
+        font-size: 30px;
     }
 }
 
@@ -23,6 +24,7 @@ body{
     #left{
         flex: 1;
         margin: 10px;
+        margin-bottom: 0;
         .form-group:last-child{
             height: 80%;
             margin: 0;
@@ -35,6 +37,7 @@ body{
     #right{
         flex: 1;
         margin: 10px;
+        margin-bottom: 0;
         span{
             display: flex;
             flex-direction: row;
@@ -54,4 +57,10 @@ body{
             padding: 10px;
         }
     }
+}
+#sender{
+    height: 5vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
