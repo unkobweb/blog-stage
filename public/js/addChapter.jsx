@@ -9,6 +9,7 @@ class AddChapter extends React.Component{
         this.state = {experience: null, title: "", content: "", wantSee: "preview"};
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.sendChapter = this.sendChapter.bind(this);
     }
 
     componentDidMount(){
@@ -31,6 +32,22 @@ class AddChapter extends React.Component{
         this.setState({
             wantSee: span,
         });
+    }
+
+    sendChapter(e){
+        fetch("/createChapter",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                experience_id: this.state.experience.id,
+                title: this.state.title,
+                content: this.state.content
+            }),
+        }).then(() => {
+            window.location.href = "/admin";
+        })
     }
 
     render(){
@@ -69,6 +86,7 @@ class AddChapter extends React.Component{
                     </span>
                     {right}
                 </div>
+                <div id="sender"><button className="btn btn-danger" onClick={this.sendChapter}>Ajouter le chapitre</button></div>
             </div>
         )
     }
