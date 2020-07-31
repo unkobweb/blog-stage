@@ -4,7 +4,7 @@ import '../css/dist/admin.css';
 
 function AddChapter({id}){
     return(
-        <a className="chapter" href={"/addChapter/"+id}><p>Ajouter un chapitre</p></a>
+        <a className="addchapter" href={"/addChapter/"+id}><p>Ajouter un chapitre</p></a>
     )
 }
 
