@@ -42,12 +42,22 @@ function adminPage(req, res){
 }
 
 function addChapterPage(req, res){
-    req.session.selectedExperience = req.params.id
-    res.sendFile(path.join(__dirname, "../views", "addChapter.html"));
+    if (req.session.user != undefined && req.session.user.role == 2){
+        res.sendFile(path.join(__dirname, "../views", "addChapter.html"));
+    } else {
+        res.redirect("/connexion");
+    }
 }
 
 function createChapter(req, res){
-
+    console.log(req.body);
+    connection.query("SELECT id FROM chapters WHERE company_id = ? ORDER BY number DESC LIMIT 1",[req.body.experience_id],function(err, results, fields){
+        let {id} = results[0];
+        let slug = req.body.title.toLowerCase();
+        slug = slug.replace(/ +/gi, '_');
+        connection.query("INSERT INTO chapters (title, content, company_id, slug, number) VALUES (?, ?, ?, ?, ?)",[req.body.title, req.body.content, req.body.experience_id, slug, id+1]);
+        res.sendStatus(200);
+    })
 }
 
 module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter}
