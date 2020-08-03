@@ -7,7 +7,7 @@ const apiController = require("../controllers/apiController");
 
 // WEB ROUTES
 router.use("/", (req, res, next) => {
-    console.log(req.session.user);
+    //console.log(req.session.user);
     next();
 })
 router.get("/", homeController.index);
