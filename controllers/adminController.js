@@ -1,6 +1,8 @@
 const path = require("path");
 const mysql = require("mysql2");
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcrypt");
+const imgConvert = require("image-convert");
+const fs = require("fs");
 require('dotenv').config();
 
 const connection = mysql.createConnection({
@@ -51,10 +53,28 @@ function addChapterPage(req, res){
 
 function createChapter(req, res){
     console.log(req.body);
+    let slug = req.body.title.toLowerCase();
+    slug = slug.replace(/ +/gi, '_');
+    if (req.body.image != ""){
+        imgConvert.fromURL({
+            url: req.body.image,
+            quality: 100,
+            output_format: "png",
+        },function(err, buffer, file) {
+            if(err){console.log(err)}
+            else{
+                console.log(buffer);
+                console.log(file)
+                fs.writeFile(path.join(__dirname,"../public/img/"+slug+".png"),buffer,(err,written,string) => {
+                    if(err){console.log(err)}
+                    console.log("Written : "+written);
+                    console.log("String : "+string);
+                });
+            }   
+        })
+    }
     connection.query("SELECT id FROM chapters WHERE company_id = ? ORDER BY number DESC LIMIT 1",[req.body.experience_id],function(err, results, fields){
         let {id} = results[0];
-        let slug = req.body.title.toLowerCase();
-        slug = slug.replace(/ +/gi, '_');
         connection.query("INSERT INTO chapters (title, content, company_id, slug, number) VALUES (?, ?, ?, ?, ?)",[req.body.title, req.body.content, req.body.experience_id, slug, id+1]);
         res.sendStatus(200);
     })
