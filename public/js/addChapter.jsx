@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {markdown} from 'markdown';
+import ChapterInputs from './chapterInputs';
 import '../css/dist/addChapter.css'
+
+
 
 class AddChapter extends React.Component{
     constructor(props){
         super(props);
-        this.state = {experience: null, title: "", content: "", wantSee: "preview"};
+        this.state = {experience: null, title: "", content: "", wantSee: "preview", image: ""};
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.sendChapter = this.sendChapter.bind(this);
@@ -43,7 +45,8 @@ class AddChapter extends React.Component{
             body: JSON.stringify({
                 experience_id: this.state.experience.id,
                 title: this.state.title,
-                content: this.state.content
+                content: this.state.content,
+                image: this.state.image
             }),
         }).then(() => {
             window.location.href = "/admin";
@@ -51,44 +54,7 @@ class AddChapter extends React.Component{
     }
 
     render(){
-        let right = (<div></div>);
-        if (this.state.wantSee == "preview"){
-            right = (
-                <span id="right">
-                        <span><h2>Prévisualisation</h2> <span>-</span> <span><b>Preview</b></span> <span onClick={this.handleClick.bind(this, "source")}>Source</span></span>
-                        <div id="content" dangerouslySetInnerHTML={{__html: markdown.toHTML(this.state.content)}}></div>
-                </span>
-            )
-            
-        } else {
-            right = (
-                <span id="right">
-                    <span><h2>Prévisualisation</h2> <span>-</span> <span onClick={this.handleClick.bind(this, "preview")}>Preview</span> <span><b>Source</b></span></span>
-                    <div id="content">{markdown.toHTML(this.state.content)}</div>
-                </span>
-            )
-        }
-        return(
-            <div>
-                <div id="header">
-                    <h1>AJOUTER UN CHAPITRE<br/>-<br/>{this.state.experience != null ? this.state.experience.company : "Loading"}</h1>
-                </div>
-                <div id="inputs">
-                    <span id="left">
-                        <div className="form-group">
-                            <label htmlFor="exampleFormControlInput1">Titre chapitre</label>
-                            <input type="text" className="form-control" value={this.state.title} onChange={this.handleChange} name="title" id="exampleFormControlInput1" placeholder="La fôret de brocéliande"/>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleFormControlInput2">Contenu</label>
-                            <textarea type="text" className="form-control" value={this.state.content} onChange={this.handleChange} name="content" id="exampleFormControlInput2"></textarea>
-                        </div>
-                    </span>
-                    {right}
-                </div>
-                <div id="sender"><button className="btn btn-danger" onClick={this.sendChapter}>Ajouter le chapitre</button></div>
-            </div>
-        )
+        return (<ChapterInputs state={this.state} sendChapter={this.sendChapter} handleClick={this.handleClick} handleChange={this.handleChange}/>)
     }
 }
 
