@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../css/dist/experience.css';
+import '../css/experience.scss';
 
 function Title({title, slug, mainColor}){
     return(

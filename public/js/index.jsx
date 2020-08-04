@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../css/dist/index.css';
+import '../css/index.scss';
 
 function Separator(){
     return(

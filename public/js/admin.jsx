@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../css/dist/admin.css';
+import '../css/admin.scss';
 
 function AddChapter({id}){
     return(

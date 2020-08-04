@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {markdown} from 'markdown';
-import '../css/dist/connexion.css'
+import '../css/connexion.scss'
 
 class Connexion extends React.Component{
     constructor(props){
