@@ -63,12 +63,9 @@ function createChapter(req, res){
         },function(err, buffer, file) {
             if(err){console.log(err)}
             else{
-                console.log(buffer);
-                console.log(file)
                 fs.writeFile(path.join(__dirname,"../public/img/"+slug+".png"),buffer,(err,written,string) => {
                     if(err){console.log(err)}
-                    console.log("Written : "+written);
-                    console.log("String : "+string);
+                    console.log(file.name + " has been saved !");
                 });
             }   
         })
