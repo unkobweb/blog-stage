@@ -2,8 +2,14 @@ const express = require("express");
 const app = express();
 const session = require("express-session");
 const router = require("./routes/web");
+require('dotenv').config();
 
-app.use(express.static(__dirname + '/build'));
+console.log("ENV : "+process.env.NODE_ENV);
+if (process.env.NODE_ENV == "production"){
+  app.use(express.static(__dirname + '/build/prod'));
+} else {
+  app.use(express.static(__dirname + '/build/dev'));
+}
 app.use(express.static(__dirname + '/public'));
 app.use(session({
     secret: 'blog_ynov_alex_2020',
