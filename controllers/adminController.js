@@ -77,4 +77,9 @@ function createChapter(req, res){
     })
 }
 
-module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter}
+function moveChapter(req, res){
+    let {id, way} = req.body;
+    console.log(req.body);
+}
+
+module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter, moveChapter}
