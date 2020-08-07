@@ -17,7 +17,7 @@ function allExperiences(req, res){
 function experience(req, res){
     connection.query("SELECT * FROM experiences WHERE id = ?",[req.params.id], function(err, results, fields) {
         let result = results[0];
-        connection.query("SELECT * FROM chapters WHERE company_id = ?",[req.params.id], function(err, results, fields){
+        connection.query("SELECT * FROM chapters WHERE company_id = ? ORDER BY number ASC",[req.params.id], function(err, results, fields){
             result.chapters = results;
             res.send(result);
         });
@@ -25,7 +25,7 @@ function experience(req, res){
 }
 
 function getAllChaptersAndExperiences(req, res){
-    connection.query("SELECT e.id as company_id, e.company, c.id as chapter_id, c.title FROM experiences e LEFT JOIN chapters c ON c.company_id = e.id", function(err, results, fields){
+    connection.query("SELECT e.id as company_id, e.company, c.id as chapter_id, c.title, c.number FROM experiences e LEFT JOIN chapters c ON c.company_id = e.id ORDER BY company_id, number", function(err, results, fields){
         console.log(results);
         let response = []
         let lastExp = null;
@@ -38,13 +38,15 @@ function getAllChaptersAndExperiences(req, res){
                     company: result.company,
                     chapters: result.chapter_id != null ? [{
                         id: result.chapter_id,
-                        title: result.title
+                        title: result.title,
+                        number: result.number
                     }] : []
                 })
             } else {
                 response[response.length-1].chapters.push({
                     id: result.chapter_id,
-                    title: result.title
+                    title: result.title,
+                    number: result.number,
                 })
             }
         })

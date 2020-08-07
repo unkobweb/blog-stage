@@ -78,8 +78,29 @@ function createChapter(req, res){
 }
 
 function moveChapter(req, res){
-    let {id, way} = req.body;
+    let {experienceId, chapterId, way} = req.body;
     console.log(req.body);
+    if (way == "up"){
+        connection.query("SELECT * FROM chapters WHERE company_id = ? AND number = ? LIMIT 1",[experienceId,chapterId-1],(err, results, fields) => {
+            let impactedChapter = results[0];
+            console.log(impactedChapter);
+            connection.query("UPDATE chapters SET number = ? WHERE number = ?",[chapterId-1, chapterId]);
+            connection.query("UPDATE chapters SET number = ? WHERE id = ?",[chapterId,impactedChapter.id]);
+            connection.query("SELECT * FROM chapters ORDER BY company_id, number ASC",(err, results, fields)=>{
+                res.sendStatus(200);
+            })
+        });
+    } else {
+        connection.query("SELECT * FROM chapters WHERE company_id = ? AND number = ? LIMIT 1",[experienceId,chapterId+1],(err, results, fields) => {
+            let impactedChapter = results[0];
+            console.log(impactedChapter);
+            connection.query("UPDATE chapters SET number = ? WHERE number = ?",[chapterId+1, chapterId]);
+            connection.query("UPDATE chapters SET number = ? WHERE id = ?",[chapterId,impactedChapter.id]);
+            connection.query("SELECT * FROM chapters ORDER BY company_id, number ASC",(err, results, fields)=>{
+                res.sendStatus(200);
+            })
+        });
+    }
 }
 
 module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter, moveChapter}

@@ -8,19 +8,19 @@ function AddChapter({id}){
     )
 }
 
-function Chapitre({id, title, moveChapter, experience}){
+function Chapitre({number, title, moveChapter, experience}){
     return(
         <div className="chapter">
             <span id="left">
                 <span id="arrows">
                     <div>
-                        <i onClick={moveChapter.bind(this, id, "up", experience.id)} className="fas fa-chevron-up"></i>
+                        <i onClick={moveChapter.bind(this, number, "up", experience.id)} className="fas fa-chevron-up"></i>
                     </div>
                     <div>
-                        <i onClick={moveChapter.bind(this, id, "down", experience.id)} className="fas fa-chevron-down"></i>
+                        <i onClick={moveChapter.bind(this, number, "down", experience.id)} className="fas fa-chevron-down"></i>
                     </div>
                 </span>
-                <span id="content">ID : {id} - {title}</span>
+                <span id="content">ID : {number} - {title}</span>
             </span>
             <span id="right">
                 <button>Modifier</button>
@@ -32,12 +32,12 @@ function Chapitre({id, title, moveChapter, experience}){
 
 function Experience({experience, moveChapter}){
     let rows = []
-    let lastId = 0;
+    let maxId = 0;
     experience.chapters.forEach(chapter => {
-        rows.push(<Chapitre key={chapter.id} id={chapter.id} title={chapter.title} moveChapter={moveChapter} experience={experience}/>)
-        lastId = chapter.id;
+        rows.push(<Chapitre key={chapter.id} number={chapter.number} title={chapter.title} moveChapter={moveChapter} experience={experience}/>)
+        maxId = chapter.id > maxId ? chapter.id : maxId;
     })
-    rows.push(<AddChapter key={lastId+1} id={experience.id}/>)
+    rows.push(<AddChapter key={maxId+1} number={experience.number}/>)
     return(
         <div className="experience">
             <h2>{experience.company}</h2>
@@ -56,7 +56,10 @@ class Admin extends React.Component{
     }
 
     componentDidMount(){
-        fetch("/api/getAdmin").then(res => res.json()).then(data => this.setState({experiences: data}))
+        fetch("/api/getAdmin").then(res => res.json()).then(data => {
+            console.log(data)
+            this.setState({experiences: data})
+        });
     }
 
     moveChapter(id, way, expId){
@@ -71,7 +74,9 @@ class Admin extends React.Component{
                 chapterId: id,
                 way: way
             })
-        })
+        }).then(() => {
+            this.componentDidMount();
+        });
     }
 
     render(){
