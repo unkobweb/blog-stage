@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ChapterInputs from './chapterInputs';
-import '../css/addChapter.scss'
+import '../css/chapterInputs.scss'
 
 
 
