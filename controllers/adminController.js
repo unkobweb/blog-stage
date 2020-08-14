@@ -103,7 +103,14 @@ function moveChapter(req, res){
     }
 }
 
-module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter, moveChapter}function deleteChapter(req, res){
+function modifyChapterPage(req, res){
+    if (req.session.user != undefined && req.session.user.role == 2){
+        res.sendFile(path.join(__dirname, "../views", "modifyChapter.html"));
+    } else {
+        res.redirect("/connexion");
+    }
+}
+
 function changeChapter(req, res){
     connection.query("UPDATE chapters SET content = ?, title = ? WHERE id = ?",[req.body.content, req.body.title, req.body.chapter_id])
     res.redirect("/admin");
