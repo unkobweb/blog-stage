@@ -23,5 +23,6 @@ router.put("/moveChapter", adminController.moveChapter);
 router.get("/api/allExperiences", apiController.allExperiences);
 router.get("/api/experience/:id", apiController.experience);
 router.get("/api/getAdmin", apiController.getAllChaptersAndExperiences);
+router.get("/api/chapter/:id", apiController.getChapter);
 
 module.exports = router;
