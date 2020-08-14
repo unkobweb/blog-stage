@@ -12,6 +12,7 @@ function Title({title, slug, mainColor}){
 }
 
 function Chapitres({mainColor, children}){
+    console.log(mainColor)
     return (
         <div>
             <h2 style={{color: mainColor, textAlign: "center"}}>Chapitres</h2>
@@ -22,11 +23,12 @@ function Chapitres({mainColor, children}){
     )
 }
 
-function Chapitre({slug, title}){
+function Chapitre({slug, number, title, id, redirect}){
+    
     return(
-        <div className="chapter" style={{backgroundImage: "url('/img/"+slug+".png')"}}>
-            <h3>{title}</h3>
-        </div>
+            <div className="chapter" onClick={redirect.bind(this,id)} style={{backgroundImage: "url('/img/hover.png'), url('/img/"+slug+".png')"}}>
+                <h3>Chapitre {number} - {title}</h3>
+            </div>
     )
 }
 
@@ -34,6 +36,7 @@ class Experience extends React.Component{
     constructor(props){
         super(props);
         this.state = {experience: null};
+        this.redirect = this.redirect.bind(this);
     }
 
     componentDidMount(){
@@ -43,21 +46,23 @@ class Experience extends React.Component{
             console.log(result);
             this.setState({experience : result});
             document.title = result.company;
+            console.log(this.state.experience)
         });
+    }
+
+    redirect(id){
+        window.location.href = "/chapter/"+id;
     }
 
     render(){
         if (this.state.experience != null){
             let {id, company, slug, main_color, contract, job, period, second_color, chapters} = this.state.experience;
             console.log(chapters)
-            let rows = [];
-            chapters.forEach(chapter => {
-                rows.push(<Chapitre key={chapter.id} slug={chapter.slug} title={chapter.title}/>);
-            })
+            let rows = chapters.map((chapter)=><Chapitre key={chapter.id} number={chapter.number} id={chapter.id} slug={chapter.slug} title={chapter.title} redirect={this.redirect}/>);
             return(
             <div>
                 <Title title={company} slug={slug} mainColor={main_color}/>
-                <Chapitres>{rows}</Chapitres>
+                <Chapitres mainColor={this.state.experience.main_color}>{rows}</Chapitres>
             </div>
             )
         }
