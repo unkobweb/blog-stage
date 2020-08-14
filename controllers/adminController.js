@@ -54,7 +54,7 @@ function addChapterPage(req, res){
 function createChapter(req, res){
     console.log(req.body);
     let slug = req.body.title.toLowerCase();
-    slug = slug.replace(/ +/gi, '_');
+    slug = slug.replace(/[^a-zA-Z]/gi, '');
     if (req.body.image != ""){
         imgConvert.fromURL({
             url: req.body.image,
