@@ -70,9 +70,9 @@ function createChapter(req, res){
             }   
         })
     }
-    connection.query("SELECT id FROM chapters WHERE company_id = ? ORDER BY number DESC LIMIT 1",[req.body.experience_id],function(err, results, fields){
-        let {id} = results[0];
-        connection.query("INSERT INTO chapters (title, content, company_id, slug, number) VALUES (?, ?, ?, ?, ?)",[req.body.title, req.body.content, req.body.experience_id, slug, id+1]);
+    connection.query("SELECT number FROM chapters WHERE company_id = ? ORDER BY number DESC LIMIT 1",[req.body.experience_id],function(err, results, fields){
+        let number = results[0] ? results[0].number : 0;
+        connection.query("INSERT INTO chapters (title, content, company_id, slug, number) VALUES (?, ?, ?, ?, ?)",[req.body.title, req.body.content, req.body.experience_id, slug, number+1]);
         res.sendStatus(200);
     })
 }
