@@ -24,6 +24,12 @@ function experience(req, res){
     });
 }
 
+function getChapter(req, res){
+    connection.query("SELECT * FROM chapters WHERE id = ?",[req.params.id],(err, results, fields)=>{
+        res.send(results[0])
+    })
+}
+
 function getAllChaptersAndExperiences(req, res){
     connection.query("SELECT e.id as company_id, e.company, c.id as chapter_id, c.title, c.number FROM experiences e LEFT JOIN chapters c ON c.company_id = e.id ORDER BY company_id, number", function(err, results, fields){
         console.log(results);
@@ -54,4 +60,4 @@ function getAllChaptersAndExperiences(req, res){
     })
 }
 
-module.exports = {allExperiences, experience, getAllChaptersAndExperiences}
+module.exports = {allExperiences, experience, getAllChaptersAndExperiences, getChapter}
