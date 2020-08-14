@@ -1,30 +1,66 @@
-@import 'variables';
+@import "variables";
 $red: #eb4d4b;
 $blue: #686de0;
 $grey: #95afc0;
 
-body{
-    margin: 0;
-    padding: 0;
-    font-family: $content-font;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $content-font;
 }
-h1{
-    font-family: $title-font;
-    text-align: center;
+h1 {
+  font-family: $title-font;
+  text-align: center;
 }
-#experiences{
+#experiences {
+  display: flex;
+  flex-direction: row;
+  .experience {
     display: flex;
-    flex-direction: row;
-    .experience{
+    flex-direction: column;
+    flex: 1;
+    margin: 0 10px;
+    &:first-child {
+      margin-left: 20px;
+    }
+    &:last-child {
+      margin-right: 20px;
+    }
+    .chapters {
+      .chapter {
         display: flex;
-        flex-direction: column;
-        flex: 1;
-        margin: 0 10px;
-        &:first-child{
-            margin-left: 20px;
+        flex-direction: row;
+        color: white;
+        padding: 5px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        justify-content: space-between;
+        align-items: center;
+        #left {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          #arrows {
+            display: flex;
+            flex-direction: column;
+            margin-right: 7px;
+            .fas:hover {
+              cursor: pointer;
+            }
+          }
         }
-        &:last-child{
-            margin-right: 20px;
+        #right {
+          button {
+            border: 0;
+            padding: 5px;
+            color: white;
+            font-family: $content-font;
+            margin-right: 5px;
+            border-radius: 10px;
+            &:hover {
+              cursor: pointer;
+            }
+          }
         }
         .chapters{
             .chapter{
@@ -91,31 +127,51 @@ h1{
                     }
                 }
             }
-            .addchapter{
-                display: flex;
-                flex-direction: row;
-                color: white;
-                padding: 5px;
-                margin-bottom: 5px;
-                border-radius: 10px;
-                justify-content: space-between;
-                align-items: center;
-                background-color: $grey;
-                text-transform: uppercase;
-                text-decoration: none;
-                p{
-                    text-align: center;
-                    width: 100%;
-                    margin: 5px;
-                }
-                &:hover{
-                    cursor: pointer;
-                }
+        }
+        &:nth-child(even) {
+          background-color: $blue;
+          #right {
+            button {
+              background-color: lighten($color: $blue, $amount: 15);
             }
+          }
         }
-        
-        h2{
-            text-align: center;
+        &:first-child {
+          .fa-chevron-up {
+            display: none;
+          }
         }
+        &:last-of-type {
+          .fa-chevron-down {
+            display: none;
+          }
+        }
+      }
+      .addchapter {
+        display: flex;
+        flex-direction: row;
+        color: white;
+        padding: 5px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $grey;
+        text-transform: uppercase;
+        text-decoration: none;
+        p {
+          text-align: center;
+          width: 100%;
+          margin: 5px;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
+
+    h2 {
+      text-align: center;
+    }
+  }
 }

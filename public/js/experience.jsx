@@ -1,14 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import '../css/experience.scss';
+import React from "react";
+import ReactDOM from "react-dom";
+import "../css/experience.scss";
 
-function Title({title, slug, mainColor}){
-    return(
-        <div id="title">
-            <div id="image" style={{backgroundImage: "url('/img/"+slug+".png')"}}></div>
-            <h1 style={{backgroundColor: mainColor}}>{title}</h1>
-        </div>
-    )
+function Title({ title, slug, mainColor }) {
+  return (
+    <div id="title">
+      <div
+        id="image"
+        style={{ backgroundImage: "url('/img/" + slug + ".png')" }}
+      ></div>
+      <h1 style={{ backgroundColor: mainColor }}>{title}</h1>
+    </div>
+  );
 }
 
 function Chapitres({mainColor, children}){
@@ -72,4 +75,4 @@ class Experience extends React.Component{
     }
 }
 
-ReactDOM.render(<Experience/>, document.querySelector("#app"));
+ReactDOM.render(<Experience />, document.querySelector("#app"));
