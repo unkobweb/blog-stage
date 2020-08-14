@@ -37,28 +37,30 @@ body {
   display: flex;
   flex-direction: row;
   margin: 10px 10px;
-  .chapter {
-    display: flex;
-    align-items: flex-end;
-    height: 40vh;
-    flex: 1;
-    background-repeat: no-repeat;
-    background-position: center;
-    margin-left: 5px;
-    margin-right: 5px;
-    border: 1px solid black;
-    &:hover {
-      cursor: pointer;
-    }
-    &:first-child {
-      margin-left: 0;
-    }
-    &:last-child {
-      margin-right: 0;
-    }
-    h3 {
-      margin: 5px;
-      color: white;
-    }
-  }
+      .chapter {
+        display: flex;
+        align-items: flex-end;
+        height: 40vh;
+        flex: 1;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        margin-left: 5px;
+        margin-right: 5px;
+        border: 1px solid black;
+        &:hover {
+          cursor: pointer;
+        }
+        &:first-child {
+          margin-left: 0;
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+        h3 {
+          margin: 5px;
+          color: white;
+        }
+      }
+  
 }
