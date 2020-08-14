@@ -18,6 +18,7 @@ router.get("/admin", adminController.adminPage);
 router.get("/addChapter/:id", adminController.addChapterPage);
 router.post("/createChapter", adminController.createChapter);
 router.put("/moveChapter", adminController.moveChapter);
+router.get("/chapter/:id", homeController.chapterPage);
 
 //API
 router.get("/api/allExperiences", apiController.allExperiences);
