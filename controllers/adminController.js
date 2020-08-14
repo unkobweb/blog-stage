@@ -104,6 +104,12 @@ function moveChapter(req, res){
 }
 
 module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter, moveChapter}function deleteChapter(req, res){
+function changeChapter(req, res){
+    connection.query("UPDATE chapters SET content = ?, title = ? WHERE id = ?",[req.body.content, req.body.title, req.body.chapter_id])
+    res.redirect("/admin");
+}
+
+function deleteChapter(req, res){
     connection.query("SELECT * FROM chapters INNER JOIN experiences EX ON EX.id = chapters.company_id WHERE chapters.id = ?",[req.params.id],(err, results, fields)=>{
         let experience = results[0];
         connection.query("DELETE FROM chapters WHERE id = ?",[req.params.id],(err, results, fields)=>{
