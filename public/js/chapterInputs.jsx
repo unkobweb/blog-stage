@@ -43,7 +43,7 @@ function ChapterInputs({state, handleClick, handleChange, sendChapter}){
                     </span>
                     {right}
                 </div>
-                <div id="sender"><button className="btn btn-danger" onClick={sendChapter}>Ajouter le chapitre</button></div>
+                <div id="sender"><button className="btn btn-danger" onClick={sendChapter}>Appliquer les changements</button></div>
             </div>
         )
 }
