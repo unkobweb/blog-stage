@@ -103,4 +103,14 @@ function moveChapter(req, res){
     }
 }
 
-module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter, moveChapter}
+module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter, moveChapter}function deleteChapter(req, res){
+    connection.query("SELECT * FROM chapters INNER JOIN experiences EX ON EX.id = chapters.company_id WHERE chapters.id = ?",[req.params.id],(err, results, fields)=>{
+        let experience = results[0];
+        connection.query("DELETE FROM chapters WHERE id = ?",[req.params.id],(err, results, fields)=>{
+            connection.query("UPDATE chapters SET number=number-1 WHERE number > ? AND company_id = ?",[experience.number,experience.id])
+            res.sendStatus(200);
+        })
+    })
+}
+
+module.exports = {connectionPage, connect, adminPage, addChapterPage, createChapter, moveChapter, modifyChapterPage, changeChapter, deleteChapter}
