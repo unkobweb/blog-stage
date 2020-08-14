@@ -18,6 +18,7 @@ router.get("/admin", adminController.adminPage);
 router.get("/addChapter/:id", adminController.addChapterPage);
 router.post("/createChapter", adminController.createChapter);
 router.put("/moveChapter", adminController.moveChapter);
+router.put("/changeChapter", adminController.changeChapter);
 router.delete("/deleteChapter/:id", adminController.deleteChapter);
 router.get("/chapter/:id", homeController.chapterPage);
 
