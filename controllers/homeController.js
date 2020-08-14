@@ -17,4 +17,8 @@ function experiencePage(req, res) {
   res.sendFile(path.join(__dirname, "../views", "experience.html"));
 }
 
-module.exports = {index, experiencePage}
+function chapterPage(req, res){
+  res.sendFile(path.join(__dirname, "../views", "chapter.html"));
+}
+
+module.exports = {index, experiencePage, chapterPage}
