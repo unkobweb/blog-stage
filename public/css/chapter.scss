@@ -60,6 +60,18 @@ h6 {
       p {
         display: block;
         text-align: left;
+        width: 100%;
+      }
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      code {
+        padding: 10px;
+        background-color: lighten($color: grey, $amount: 45);
+        width: 100%;
+        border-radius: 10px;
       }
     }
   }
