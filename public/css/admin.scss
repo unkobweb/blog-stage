@@ -50,11 +50,13 @@ h1 {
           }
         }
         #right {
-          button {
+          a {
             border: 0;
-            padding: 5px;
+            padding: 2px 5px;
             color: white;
             font-family: $content-font;
+            background-color: rgba($color: white, $alpha: 0.4);
+            text-decoration: none;
             margin-right: 5px;
             border-radius: 10px;
             &:hover {
@@ -62,71 +64,13 @@ h1 {
             }
           }
         }
-        .chapters{
-            .chapter{
-                display: flex;
-                flex-direction: row;
-                color: white;
-                padding: 5px;
-                margin-bottom: 5px;
-                border-radius: 10px;
-                justify-content: space-between;
-                align-items: center;
-                #left{
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-                    #arrows{
-                        display: flex;
-                        flex-direction: column;
-                        margin-right: 7px;
-                        .fas:hover{
-                            cursor: pointer;
-                        }
-                    }
-                }
-                #right{
-                    a{
-                        border: 0;
-                        padding: 2px 5px;
-                        color: white;
-                        font-family: $content-font;
-                        margin-right: 5px;
-                        border-radius: 10px;
-                        text-decoration: none;
-                        background-color: rgba($color: white, $alpha: .4);
-                        &:hover{
-                            cursor: pointer;
-                        }
-                    }
-                }
-                &:nth-child(odd){
-                    background-color: $red;
-                    #right{
-                        button{
-                            background-color: lighten($color: $red, $amount: 15);
-                        }
-                    }
-                }
-                &:nth-child(even){
-                    background-color: $blue;
-                    #right{
-                        button{
-                            background-color: lighten($color: $blue, $amount: 15);
-                        }
-                    }
-                }
-                &:first-child{
-                    .fa-chevron-up{
-                        display: none;
-                    }
-                }
-                &:last-of-type{
-                    .fa-chevron-down{
-                        display: none;
-                    }
-                }
+        &:nth-child(odd) {
+          background-color: $red;
+          #right {
+            button {
+              background-color: lighten($color: $red, $amount: 15);
             }
+          }
         }
         &:nth-child(even) {
           background-color: $blue;

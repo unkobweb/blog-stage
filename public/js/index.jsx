@@ -33,7 +33,7 @@ class Experiences extends React.Component{
     }
 
     componentDidMount(){
-        fetch("http://localhost:8000/api/allExperiences").then(data => data.json()).then(result => {
+        fetch("/api/allExperiences").then(data => data.json()).then(result => {
             this.setState({experiences : result});
         });
     }

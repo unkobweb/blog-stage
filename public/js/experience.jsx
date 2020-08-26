@@ -45,7 +45,7 @@ class Experience extends React.Component{
     componentDidMount(){
         let link = window.location.href.split("/");
         let id = link[link.length-1];
-        fetch("http://localhost:8000/api/experience/"+id).then(data => data.json()).then(result => {
+        fetch("/api/experience/"+id).then(data => data.json()).then(result => {
             console.log(result);
             this.setState({experience : result});
             document.title = result.company;
