@@ -3,6 +3,9 @@ body {
   font-family: $content-font;
   margin: 0;
   padding: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: center;
 }
 h1,
 h2,
@@ -18,34 +21,36 @@ h6 {
   text-align: center;
 }
 
-#separator {
-  position: absolute;
-  top: 20%;
-  left: 49.74%;
-  height: 60vh;
-  border-left: 5px solid white;
-  border-right: 5px solid white;
-  border-radius: 10px;
-  background-color: white;
-  z-index: 2;
+#header {
+  text-align: center;
+  height: 10vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    margin: 0;
+  }
 }
 
 #experiences {
   display: flex;
   flex-direction: row;
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
   color: white;
   z-index: 1;
   .experience {
     display: flex;
     width: 50vw;
+    margin: 20px 10px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     z-index: 1;
     background-size: cover;
     position: relative;
+    border: 1px solid black;
     h3,
     h4 {
       z-index: 2;
@@ -72,6 +77,35 @@ h6 {
     }
     &:hover {
       cursor: pointer;
+    }
+    &:first-child {
+      margin-left: 20px;
+    }
+    &:last-child {
+      margin-right: 20px;
+    }
+  }
+}
+
+#buttons {
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    a {
+      text-decoration: none;
+      background-color: lighten($color: grey, $amount: 30);
+      padding: 10px 20px;
+      border-radius: 2px;
+      color: white;
+      font-weight: 900;
+      font-style: $content-font;
     }
   }
 }
